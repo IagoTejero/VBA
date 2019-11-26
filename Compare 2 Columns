@@ -1,0 +1,13 @@
+Sub PullUniques()
+    Dim rngCell As Range
+    For Each rngCell In Range("A2:A40")
+        If WorksheetFunction.CountIf(Range("B2:B40"), rngCell) = 0 Then
+            Range("C" & Rows.Count).End(xlUp).Offset(1) = rngCell
+        End If
+    Next
+    For Each rngCell In Range("B2:B40")
+        If WorksheetFunction.CountIf(Range("A2:A40"), rngCell) = 0 Then
+            Range("D" & Rows.Count).End(xlUp).Offset(1) = rngCell
+        End If
+    Next
+End Sub
