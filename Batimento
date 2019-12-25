@@ -1,0 +1,50 @@
+Sub natal()
+' CODIGO DE FORMATAÇÃO DE TABELA
+For i = 3 To Range("A2:A100").Count ' loop de cosif e analitica
+    If Cells(i, 1) <> vbNullString Then ' verifica se não acabaram as linhas
+    
+        If UCase(Cells(i, 1)) = "COSIF" Then
+            Cells(i, 3) = Cells(i, 1)
+            Cells(i, 4) = Cells(i, 2)
+            
+        Else
+            Cells(i, 4) = Cells(i, 1)
+            Cells(i, 5) = Cells(i, 2)
+            
+        End If
+
+    Else
+        GoTo jump ' se for nula, vai parsa o fim da cadeia porque acabou os dados
+    End If
+
+
+Next
+jump:
+
+End Sub
+
+Sub cosif_analitica()
+i = 4
+
+Do While Cells(i, 4) <> vbNullString ' referencia na celula D que sempre tem valores
+' loop geral
+    a = i
+    Do Until UCase(Cells(a, 3)) = "COSIF"
+    
+        If Left(Cells(a, 5), 3) = Left(Cells(i - 1, 4), 3) Then
+            Cells(a, 10) = Cells(a, 5)
+        End If
+       
+        a = a + 1
+        
+        If Cells(a, 4) = vbNullString Then GoTo teste
+           
+    Loop
+    
+   i = i + 1
+Loop
+
+teste:
+
+
+End Sub
